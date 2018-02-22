@@ -1,7 +1,7 @@
 from decorators import address
 from helpers import send_response, write_to_db
 from renderer import render
-
+from translit import translit
 
 @address('about')
 def about_handler(request, conn, match=True, data={}):
@@ -15,7 +15,17 @@ def about_handler(request, conn, match=True, data={}):
 
     send_response(resp, conn, match)
 
+@address('translit')
+def translit_handler(request, conn, match=True, data={}):
+    template = "translit.html"
+    abc = render(template)
+    resp = """\
+    HTTP/1.1 200 OK
 
+    {0}
+    """.format(abc)
+
+    send_response(resp, conn, match)
 
 # @address('shop')
 # def shop_handler(request, conn, match=True):

@@ -1,6 +1,6 @@
 import re
 import socket
-from view import about_handler, contact_handler, products_handler
+from view import about_handler, contact_handler, products_handler, translit_handler
 
 HOST, PORT = '', 8888
 listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -18,22 +18,5 @@ while True:
     about_handler(request_string, client_connection)
     contact_handler(request_string, client_connection)
     products_handler(request_string, client_connection)
+    translit_handler(request_string, client_connection)
 
-
-# connection = pymysql.connect(host='localhost',
-#                              user='root',
-#                              password='197791515',
-#                              db='post_get_request',
-#                              charset='utf8mb4',
-#                              cursorclass=pymysql.cursors.DictCursor)
-
-# try:
-#     with connection.cursor() as cursor:
-#         sql = """
-#         INSERT INTO `post_get_request`.`new_table` (`last_name`, `first_name`) VALUES ({0},{1})
-#         """.format(request_string)
-#         for x in request_string:
-#             cursor.execute(sql)
-#     connection.commit()
-# finally:
-#     connection.close()
